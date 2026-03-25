@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CapStore | Premium Headwear</title>
+    <link rel="icon" type="jpeg" href="./images-removebg-preview.png">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+</head>
+<body>
+
+<nav>
+    <div class="logo">
+        <i class="fas fa-hat-cowboy"></i> CAP<span>STORE</span>
+    </div>
+    
+    <div class="menu-btn" id="menu-btn">
+        <i class="fas fa-bars"></i>
+    </div>
+
+    <div class="nav-links" id="nav-links">
+        <a href="index.html">Home</a>
+        <a href="contact.html">Contact</a>
+        <a href="auth.html" id="login-link">Login</a>
+        <a href="dashboard.html" id="dash-link" style="display:none;">Dashboard</a>
+        <span id="user-display" style="color: var(--accent); font-weight: bold;"></span>
+        <button id="logout-btn" class="logout-btn-style" style="display:none;">Logout</button>
+    </div>
+</nav>
+
+    <header class="hero">
+        <div data-aos="fade-up">
+            <h1>New Arrivals 2026</h1>
+            <p>Upgrade your style with our premium collection.</p>
+        </div>
+    </header>
+
+    <section class="container">
+        <h2 class="section-title" data-aos="fade-right">Latest Arrivals</h2>
+        <div id="product-list" class="product-grid">
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 CapStore - Premium Quality Headwear</p>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>AOS.init({ duration: 1000 });</script>
+    <script type="module" src="app.js"></script>
+</body>
+</html>
+

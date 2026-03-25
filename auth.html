@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | CapStore</title>
+    <link rel="icon" type="jpeg" href="./images-removebg-preview.png">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="admin-body">
+
+    <nav>
+        <div class="logo">
+            <i class="fas fa-hat-cowboy"></i> CAP<span>STORE</span>
+        </div>
+        <div class="nav-links">
+            <a href="index.html">Back Home</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="admin-card">
+            <div class="admin-header">
+                <h2 id="auth-title">Login</h2>
+                <p>Access your account to manage orders</p>
+            </div>
+
+            <div class="form-group">
+                <label>Email Address</label>
+                <input type="email" id="email" placeholder="name@example.com">
+            </div>
+
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" id="password" placeholder="Enter your password">
+            </div>
+
+            <button id="main-btn" class="buy-btn">Login Now</button>
+            
+            <p style="margin-top:20px; text-align:center; font-size:14px; color:#666;">
+                Don't have an account? 
+                <span onclick="toggleAuth()" id="toggle-text" style="color:var(--accent); cursor:pointer; font-weight:bold;">Sign Up</span>
+            </p>
+        </div>
+    </div>
+
+    <script>
+        function toggleAuth() {
+            const title = document.getElementById('auth-title');
+            const btn = document.getElementById('main-btn');
+            const toggle = document.getElementById('toggle-text');
+            if (title.innerText === "Login") {
+                title.innerText = "Sign Up";
+                btn.innerText = "Register Now";
+                toggle.innerText = "Login Here";
+            } else {
+                title.innerText = "Login";
+                btn.innerText = "Login Now";
+                toggle.innerText = "Sign Up";
+            }
+        }
+    </script>
+    <script type="module" src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | CapStore</title>
+    <link rel="icon" type="jpeg" href="./images-removebg-preview.png">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="admin-body">
+
+    <nav>
+        <div class="logo">
+            <i class="fas fa-hat-cowboy"></i> CAP<span>STORE</span> Admin
+        </div>
+        
+        <div class="menu-btn" id="menu-btn">
+            <i class="fas fa-bars"></i>
+        </div>
+
+        <div class="nav-links" id="nav-links">
+            <a href="index.html">View Store</a>
+            <a href="contact.html">Messages</a>
+            <button id="logout-btn" class="logout-btn-style">Logout</button>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="admin-card">
+            <div class="admin-header">
+                <h2 id="form-title">Add New Product</h2>
+                <p>Fill in the details to update the store collection.</p>
+            </div>
+            
+            <div class="form-group">
+                <label><i class="fas fa-tag"></i> Cap Name</label>
+                <input type="text" id="p-name" placeholder="e.g. Nike Heritage Cap">
+            </div>
+
+            <div class="form-group">
+                <label><i class="fas fa-dollar-sign"></i> Price ($)</label>
+                <input type="number" id="p-price" placeholder="e.g. 400">
+            </div>
+
+            <div class="form-group">
+                <label><i class="fas fa-image"></i> Image URL</label>
+                <input type="text" id="p-img" placeholder="Paste image link here">
+            </div>
+
+            <button id="add-p-btn" class="buy-btn" style="margin-top: 10px;">Upload Product</button>
+            
+            <div style="text-align: center; margin-top: 20px;">
+                <a href="index.html" class="back-link">Cancel and Go Back</a>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="app.js"></script>
+    <script>
+        const menuBtn = document.getElementById('menu-btn');
+        const navLinks = document.getElementById('nav-links');
+        if (menuBtn) {
+            menuBtn.onclick = () => {
+                navLinks.classList.toggle('active');
+                const icon = menuBtn.querySelector('i');
+                icon.classList.toggle('fa-bars');
+                icon.classList.toggle('fa-times');
+            };
+        }
+    </script>
+</body>
+</html>

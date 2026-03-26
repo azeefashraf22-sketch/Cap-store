@@ -1,6 +1,22 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-import { getAuth, onAuthStateChanged, signOut, signInWithEmailAndPassword, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-import { getDatabase, ref, set, push, onValue, remove, update } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+import {
+    getAuth,
+    onAuthStateChanged,
+    signOut,
+    signInWithEmailAndPassword,
+    createUserWithEmailAndPassword,
+    GoogleAuthProvider,
+    signInWithPopup
+} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+import {
+    getDatabase,
+    ref,
+    set,
+    push,
+    onValue,
+    remove,
+    update
+} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyBVdD1gMHn6nwyIovzi4kvRj5thAv2-G4g",
@@ -16,6 +32,8 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getDatabase(app);
+const provider = new GoogleAuthProvider();
+const productsRef = ref(db, 'products/');
 
 onAuthStateChanged(auth, (user) => {
     const loginLink = document.getElementById('login-link');
@@ -36,7 +54,6 @@ onAuthStateChanged(auth, (user) => {
     }
 });
 
-const productsRef = ref(db, 'products/');
 onValue(productsRef, (snap) => {
     if (!snap.exists()) {
         const defaultCaps = [
@@ -69,11 +86,11 @@ if (productList) {
                         </div>
                     </div>
                 </div>`;
-            
+
             onAuthStateChanged(auth, user => {
-                if(user) {
+                if (user) {
                     const ctrl = document.getElementById(`admin-ctrl-${id}`);
-                    if(ctrl) ctrl.style.display = 'flex';
+                    if (ctrl) ctrl.style.display = 'flex';
                 }
             });
         });
@@ -81,8 +98,11 @@ if (productList) {
 }
 
 window.buyNow = (name, imgURL) => {
-    if(!auth.currentUser) { alert("Login first!"); window.location.href="auth.html"; return; }
-    
+    if (!auth.currentUser) {
+        alert("Pehle Login Karein!");
+        window.location.href = "auth.html";
+        return;
+    }
     set(push(ref(db, 'orders/')), {
         productName: name,
         productImgURL: imgURL,
@@ -92,17 +112,20 @@ window.buyNow = (name, imgURL) => {
 };
 
 window.deleteProduct = (id) => {
-    if(confirm("Confirm deletion of this product?")) remove(ref(db, 'products/' + id));
+    if (confirm("Pakka delete karna hai?")) {
+        remove(ref(db, 'products/' + id));
+    }
 };
 
 window.editProduct = (id, name, price, img) => {
-    localStorage.setItem("editData", JSON.stringify({id, name, price, img}));
+    localStorage.setItem("editData", JSON.stringify({ id, name, price, img }));
     window.location.href = "dashboard.html";
 };
 
 const addBtn = document.getElementById('add-p-btn');
 if (addBtn) {
     const editData = JSON.parse(localStorage.getItem("editData"));
+
     if (editData) {
         document.getElementById('p-name').value = editData.name;
         document.getElementById('p-price').value = editData.price;
@@ -115,7 +138,10 @@ if (addBtn) {
         const price = document.getElementById('p-price').value;
         const img = document.getElementById('p-img').value;
 
-        if(!name || !price || !img) { alert("Please fill all fields!"); return; }
+        if (!name || !price || !img) {
+            alert("Please fill all fields!");
+            return;
+        }
 
         if (editData) {
             update(ref(db, 'products/' + editData.id), { name, price, img }).then(() => {
@@ -123,7 +149,9 @@ if (addBtn) {
                 window.location.href = "index.html";
             });
         } else {
-            push(productsRef, { name, price, img }).then(() => window.location.href = "index.html");
+            push(productsRef, { name, price, img }).then(() => {
+                window.location.href = "index.html";
+            });
         }
     };
 }
@@ -134,6 +162,11 @@ if (mainAuthBtn) {
         const email = document.getElementById('email').value;
         const pass = document.getElementById('password').value;
         const mode = document.getElementById('auth-title').innerText;
+
+        if (!email || !pass) {
+            alert("Please fill all fields!");
+            return;
+        }
 
         if (mode === "Login") {
             signInWithEmailAndPassword(auth, email, pass)
@@ -147,21 +180,49 @@ if (mainAuthBtn) {
     };
 }
 
+const googleBtn = document.getElementById('google-btn');
+if (googleBtn) {
+    googleBtn.onclick = () => {
+        signInWithPopup(auth, provider)
+            .then(() => window.location.href = "index.html")
+            .catch(err => alert("Google Error: " + err.message));
+    };
+}
+
 const contactBtn = document.getElementById('send-msg-btn');
 if (contactBtn) {
     contactBtn.onclick = () => {
         const name = document.getElementById('c-name').value;
+        const email = document.getElementById('c-email').value;
         const msg = document.getElementById('c-msg').value;
 
-        if(!name || !msg) { alert("Fill all inputs!"); return; }
+        if (!name || !email || !msg) {
+            alert("Please fill all fields!");
+            return;
+        }
 
-        push(ref(db, 'messages/'), { name, msg, date: new Date().toLocaleString() })
-            .then(() => { alert("Product Buy  Successfully!"); location.reload(); });
+        push(ref(db, 'messages/'), {
+            name,
+            email,
+            msg,
+            date: new Date().toLocaleString()
+        }).then(() => {
+            alert("Message Sent!");
+            location.reload();
+        });
+    };
+}
+
+const logoutAction = document.getElementById('logout-btn');
+if (logoutAction) {
+    logoutAction.onclick = () => {
+        signOut(auth).then(() => location.reload());
     };
 }
 
 const menuBtn = document.getElementById('menu-btn');
 const navLinks = document.getElementById('nav-links');
+
 if (menuBtn) {
     menuBtn.onclick = () => {
         navLinks.classList.toggle('active');
@@ -173,6 +234,3 @@ if (menuBtn) {
         }
     };
 }
-
-const logoutAction = document.getElementById('logout-btn');
-if (logoutAction) logoutAction.onclick = () => signOut(auth).then(() => location.reload());

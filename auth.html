@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login | CapStore</title>
+    <title>Login & Signup | CapStore</title>
     <link rel="icon" type="jpeg" href="./images-removebg-preview.png">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
 <body class="admin-body">
 
@@ -21,26 +22,34 @@
 
     <div class="container">
         <div class="admin-card">
+
             <div class="admin-header">
                 <h2 id="auth-title">Login</h2>
-                <p>Access your account to manage orders</p>
+                <p id="auth-subtitle">Access your account to explore premium caps.</p>
             </div>
 
             <div class="form-group">
-                <label>Email Address</label>
+                <label><i class="fas fa-envelope"></i> Email Address</label>
                 <input type="email" id="email" placeholder="name@example.com">
             </div>
 
             <div class="form-group">
-                <label>Password</label>
+                <label><i class="fas fa-lock"></i> Password</label>
                 <input type="password" id="password" placeholder="Enter your password">
             </div>
 
-            <button id="main-btn" class="buy-btn">Login Now</button>
-            
-            <p style="margin-top:20px; text-align:center; font-size:14px; color:#666;">
-                Don't have an account? 
-                <span onclick="toggleAuth()" id="toggle-text" style="color:var(--accent); cursor:pointer; font-weight:bold;">Sign Up</span>
+            <button id="main-btn" class="buy-btn" style="margin-top: 10px;">Login Now</button>
+
+            <div class="divider"><span>OR</span></div>
+
+            <button id="google-btn" class="google-btn">
+               <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google">
+                Continue with Google
+            </button>
+
+            <p style="margin-top: 25px; text-align: center; font-size: 14px; color: #666;">
+                <span id="toggle-msg">Don't have an account?</span>
+                <span onclick="toggleAuth()" id="toggle-text" style="color: var(--accent); cursor: pointer; font-weight: 600;">Sign Up</span>
             </p>
         </div>
     </div>
@@ -48,19 +57,27 @@
     <script>
         function toggleAuth() {
             const title = document.getElementById('auth-title');
+            const subtitle = document.getElementById('auth-subtitle');
             const btn = document.getElementById('main-btn');
-            const toggle = document.getElementById('toggle-text');
+            const toggleText = document.getElementById('toggle-text');
+            const toggleMsg = document.getElementById('toggle-msg');
+
             if (title.innerText === "Login") {
                 title.innerText = "Sign Up";
+                subtitle.innerText = "Create a new account to start shopping.";
                 btn.innerText = "Register Now";
-                toggle.innerText = "Login Here";
+                toggleMsg.innerText = "Already have an account?";
+                toggleText.innerText = "Login";
             } else {
                 title.innerText = "Login";
+                subtitle.innerText = "Access your account to explore premium caps.";
                 btn.innerText = "Login Now";
-                toggle.innerText = "Sign Up";
+                toggleMsg.innerText = "Don't have an account?";
+                toggleText.innerText = "Sign Up";
             }
         }
     </script>
+
     <script type="module" src="app.js"></script>
 </body>
 </html>

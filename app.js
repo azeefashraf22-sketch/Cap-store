@@ -99,7 +99,7 @@ if (productList) {
 
 window.buyNow = (name, imgURL) => {
     if (!auth.currentUser) {
-        alert("Pehle Login Karein!");
+        alert("Login First!");
         window.location.href = "auth.html";
         return;
     }
@@ -112,7 +112,7 @@ window.buyNow = (name, imgURL) => {
 };
 
 window.deleteProduct = (id) => {
-    if (confirm("Pakka delete karna hai?")) {
+    if (confirm("Confirm deletion?")) {
         remove(ref(db, 'products/' + id));
     }
 };

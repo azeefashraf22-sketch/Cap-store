@@ -75,7 +75,7 @@ if (productList) {
             const id = child.key;
             productList.innerHTML += `
                 <div class="card" data-aos="zoom-in">
-                    <img src="${data.img}" alt="Cap">
+                    <img src="${data.img}" alt="${data.name}">
                     <div class="card-body">
                         <h3>${data.name}</h3>
                         <span class="price">$${data.price}</span>

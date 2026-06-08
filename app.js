@@ -19,14 +19,14 @@ import {
 } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyBVdD1gMHn6nwyIovzi4kvRj5thAv2-G4g",
-    authDomain: "e-commerce-22fa7.firebaseapp.com",
-    projectId: "e-commerce-22fa7",
-    rDatabaseUrl: "https://e-commerce-22fa7-default-rtdb.firebaseio.com/",
-    storageBucket: "e-commerce-22fa7.firebasestorage.app",
-    messagingSenderId: "1029239721435",
-    appId: "1:1029239721435:web:a41ddd43ed5fde8e43ebfe",
-    measurementId: "G-TTVCC1RVWP"
+    apiKey: "AIzaSyDW2N0_vb42dT0LTjmMkL9xvl02Q3G3uqw",
+    authDomain: "e-commerce-cap-store.firebaseapp.com",
+    projectId: "e-commerce-cap-store",
+    rTimeDatabase: "https://e-commerce-cap-store-default-rtdb.asia-southeast1.firebasedatabase.app/",
+    storageBucket: "e-commerce-cap-store.firebasestorage.app",
+    messagingSenderId: "966489936166",
+    appId: "1:966489936166:web:1741fc06d815b8304af1e7",
+    measurementId: "G-821BV5YZ47"
 };
 
 const app = initializeApp(firebaseConfig);

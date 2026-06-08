@@ -22,7 +22,7 @@ const firebaseConfig = {
     apiKey: "AIzaSyDW2N0_vb42dT0LTjmMkL9xvl02Q3G3uqw",
     authDomain: "e-commerce-cap-store.firebaseapp.com",
     projectId: "e-commerce-cap-store",
-    rTimeDatabase: "https://e-commerce-cap-store-default-rtdb.asia-southeast1.firebasedatabase.app/",
+    databaseURL: "https://e-commerce-22fa7-default-rtdb.asia-southeast1.firebasedatabase.app/",
     storageBucket: "e-commerce-cap-store.firebasestorage.app",
     messagingSenderId: "966489936166",
     appId: "1:966489936166:web:1741fc06d815b8304af1e7",

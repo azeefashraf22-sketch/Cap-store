@@ -27,6 +27,8 @@ body {
     min-height: 100vh;
 }
 
+/* NAVBAR */
+
 nav {
     background: var(--white);
     padding: 15px 8%;
